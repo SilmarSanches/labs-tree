@@ -3,13 +3,24 @@ package auction_entity
 import (
 	"context"
 	"fullcycle-auction_go/internal/internal_error"
-	"github.com/google/uuid"
+	"os"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 func CreateAuction(
 	productName, category, description string,
 	condition ProductCondition) (*Auction, *internal_error.InternalError) {
+
+	auctionTimeStr := os.Getenv("AUCTION_INTERVAL")
+	auctionDuration, err := time.ParseDuration(auctionTimeStr)
+	if err != nil {
+		return nil, internal_error.NewInternalServerError("Invalid auctioninterval format")
+	}
+
+	now := time.Now()
+
 	auction := &Auction{
 		Id:          uuid.New().String(),
 		ProductName: productName,
@@ -17,7 +28,8 @@ func CreateAuction(
 		Description: description,
 		Condition:   condition,
 		Status:      Active,
-		Timestamp:   time.Now(),
+		Timestamp:   now,
+		EndAuction:  now.Add(auctionDuration),
 	}
 
 	if err := auction.Validate(); err != nil {
@@ -47,6 +59,7 @@ type Auction struct {
 	Condition   ProductCondition
 	Status      AuctionStatus
 	Timestamp   time.Time
+	EndAuction  time.Time
 }
 
 type ProductCondition int
