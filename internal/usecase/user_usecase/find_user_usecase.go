@@ -25,6 +25,8 @@ type UserUseCaseInterface interface {
 	FindUserById(
 		ctx context.Context,
 		id string) (*UserOutputDTO, *internal_error.InternalError)
+
+	CreateUser(ctx context.Context, user *user_entity.User) error
 }
 
 func (u *UserUseCase) FindUserById(
