@@ -14,74 +14,22 @@ POST {{baseUrl}}/auction
 Content-Type: application/json
 
 {
-  "product_name": "PlayStation 3",
+  "product_name": "PlayStation 5",
   "category": "Games",
-  "description": "Console usado",
+  "description": "Console novo, lacrado",
   "condition": 1
 }
 
-### Listar todos os leilões
-GET {{baseUrl}}/auction?status=1
-Content-Type: application/json
-
-### Buscar leilão por ID (use ID copiado da criação)
-GET {{baseUrl}}/auction/875bfcb7-026b-4a77-b055-80c0271b9a63
-Content-Type: application/json
-
-### Criar lance 1
+### Criar lance
 POST {{baseUrl}}/bid
 Content-Type: application/json
 
 {
-  "auction_id": "c6f78369-22b8-4e4d-a627-bd5689703ad6",
-  "user_id": "5c1926b1-db65-45f3-8808-717e1aa0116f",
-  "amount": 450.00
-}
-
-### Criar lance 2
-POST {{baseUrl}}/bid
-Content-Type: application/json
-
-{
-  "auction_id": "c6f78369-22b8-4e4d-a627-bd5689703ad6",
-  "user_id": "5c1926b1-db65-45f3-8808-717e1aa0116f",
-  "amount": 500.00
-}
-
-### Criar lance 3
-POST {{baseUrl}}/bid
-Content-Type: application/json
-
-{
-  "auction_id": "875bfcb7-026b-4a77-b055-80c0271b9a63",
-  "user_id": "5c1926b1-db65-45f3-8808-717e1aa0116f",
-  "amount": 550.00
-}
-
-### Criar lance 4
-POST {{baseUrl}}/bid
-Content-Type: application/json
-
-{
-  "auction_id": "875bfcb7-026b-4a77-b055-80c0271b9a63",
+  "auction_id": "42f9cad4-d05e-46ba-9828-6e3e29916703",
   "user_id": "5c1926b1-db65-45f3-8808-717e1aa0116f",
   "amount": 600.00
 }
 
-### Criar lance 5
-POST {{baseUrl}}/bid
-Content-Type: application/json
-
-{
-  "auction_id": "875bfcb7-026b-4a77-b055-80c0271b9a63",
-  "user_id": "5c1926b1-db65-45f3-8808-717e1aa0116f",
-  "amount": 650.00
-}
-
-### Buscar lances de um leilão
-GET {{baseUrl}}/bid/c6f78369-22b8-4e4d-a627-bd5689703ad6
-Content-Type: application/json
-
-### Verificar o lance vencedor (após tempo do leilão expirar)
-GET {{baseUrl}}/auction/winner/c6f78369-22b8-4e4d-a627-bd5689703ad6
+### Verificar o lance vencedor
+GET {{baseUrl}}/auction/winner/42f9cad4-d05e-46ba-9828-6e3e29916703
 Content-Type: application/json
