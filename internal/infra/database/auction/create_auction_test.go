@@ -53,6 +53,9 @@ func TestCreateAuction_MockClosesAuctionAutomatically(t *testing.T) {
 }
 
 func TestAuctionIsAutomaticallyClosedMongoReal(t *testing.T) {
+	os.Setenv("MONGODB_URL", "mongodb://admin:admin@localhost:27017/auctions?authSource=admin")
+	os.Setenv("MONGODB_DB", "auctions")
+
 	os.Setenv("AUCTION_INTERVAL", "3s")
 	ctx := context.Background()
 
